@@ -20,7 +20,7 @@ func Run() {
 }
 func RunWithPort(port string) {
 	http.HandleFunc("/", httpMethod)         //设置访问的路由
-	err := http.ListenAndServe(":9090", nil) //设置监听的端口
+	err := http.ListenAndServe(port, nil) //设置监听的端口
 	if err != nil {
 		panic(err)
 	}
