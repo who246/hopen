@@ -27,6 +27,7 @@ func RunWithPort(port string) {
 }
 func httpMethod(w http.ResponseWriter, r *http.Request) {
 	requestPath := r.URL.Path
+	isFind := false;
 	for _, route := range router.info {
 		if !route.regex.MatchString(requestPath) {
 			continue
@@ -85,8 +86,11 @@ func httpMethod(w http.ResponseWriter, r *http.Request) {
 		}
 		methd := vc.MethodByName(methdName)
 		methd.Call([]reflect.Value{})
-
+        isFind = true
 		break
+	}
+	if !isFind {
+		http.NotFound(w, r)
 	}
 }
 func AddRouter(pattern string, c controllerInterface, methdName string) {

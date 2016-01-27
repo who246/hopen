@@ -2,7 +2,7 @@ package hopen
 
 import (
 	"net/http"
-	"encoding/json"
+	"github.com/who246/hopen/utils"
 )
 
 type controllerInterface interface {
@@ -19,17 +19,17 @@ func (c *Controller) Init(w http.ResponseWriter, r *http.Request) {
 	c.R = r
 	c.Data = make(map[string]interface{})
 }
- 
+
 func (c *Controller) SetValue(key string, obj interface{}) {
 	c.Data[key] = obj
 }
-func (c *Controller) RenderJson() error{
-	c.W.Header().Add("Content-Type", "application/json; charset=utf-8")
-	content, err := json.Marshal(c.Data)
-	if err != nil {
-		http.Error(c.W, err.Error(), http.StatusInternalServerError)
-		return err
-	}
-	c.W.Write(content);
-	return nil;
+func (c *Controller) RenderJson() error {
+	return utils.RenderJson(c.W,c.Data)
+}
+func (c *Controller) RenderXml(obj interface{}) error {
+ 
+	return utils.RenderXml(c.W,obj)
+}
+func (c *Controller) Render(path string) error {
+	return utils.Render(c.W,path,c.Data)
 }
