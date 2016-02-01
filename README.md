@@ -2,8 +2,9 @@
 Golang 极速开发框架 Rapid development framework
 #how to use
 
+```Go
 ##main
-{ {{ 
+ 
 func init(){  
 	//hopen.AddRouter("/test/:id([0-9]+)/sss",&testController.TestController{},"get:tohtml");
 	//hopen.AddAutoRouter("/test/:id([0-9]+)/tohtml",&testController.TestController{});
@@ -12,7 +13,8 @@ func init(){
 func main(){
   hopen.Run()
 }
- }} }
+```
+
 ##controller
 
 type TestController struct {
