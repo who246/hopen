@@ -2,9 +2,9 @@
 Golang 极速开发框架 Rapid development framework
 #how to use
 
-```Go
 ##main
- 
+
+```Go
 func init(){  
 	//hopen.AddRouter("/test/:id([0-9]+)/sss",&testController.TestController{},"get:tohtml");
 	//hopen.AddAutoRouter("/test/:id([0-9]+)/tohtml",&testController.TestController{});
@@ -16,7 +16,7 @@ func main(){
 ```
 
 ##controller
-
+```Go
 type TestController struct {
 	hopen.Controller
 }
@@ -53,3 +53,4 @@ func (t *TestController) ToHtml() {
 func (t *TestController) RedirectTo() {
       t.Redirect("tojson")
 }
+```
