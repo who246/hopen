@@ -10,10 +10,17 @@ import (
 
 var (
 	router *RouterRegistor
+	staticDirs map[string]string
 )
 
 func init() {
 	router = &RouterRegistor{}
+	staticDirs = make(map[string]string)
+	//设置默认静态目录
+	SetStaticDir("/static", "static")
+}
+func SetStaticDir(url,dir string){
+	staticDirs[url] = dir
 }
 func Run() {
 	RunWithPort(":9090")
@@ -26,6 +33,14 @@ func RunWithPort(port string) {
 	}
 }
 func httpMethod(w http.ResponseWriter, r *http.Request) {
+	for prefix, staticDir := range staticDirs {
+     if strings.HasPrefix(r.URL.Path, prefix) {
+     file := staticDir + r.URL.Path[len(prefix):]
+	 println(file)
+	 http.ServeFile(w, r, file)
+     return
+     } 
+   }
 	requestPath := r.URL.Path
 	isFind := false;
 	for _, route := range router.info {

@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"github.com/who246/hopen/utils"
 	"strconv"
+	"text/template"
 )
 
 type controllerInterface interface {
@@ -80,4 +81,11 @@ func (c *Controller) RenderXml(obj interface{}) error {
 }
 func (c *Controller) Render(path string) error {
 	return utils.Render(c.W,path,c.Data)
+}
+func (c *Controller) HTMLEscapeString(data string) string {
+	return template.HTMLEscapeString(data)
+}
+func (c *Controller) Redirect(url string) {
+		c.W.Header().Add("Location", url)
+	    c.W.WriteHeader(302)
 }

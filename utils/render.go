@@ -56,3 +56,4 @@ func Render(w http.ResponseWriter, path string, data interface{}) error {
 	}
 	return err
 }
+ 
