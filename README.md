@@ -1,5 +1,7 @@
 # hopen
-Golang 极速开发框架 Rapid development framework
+====
+![hopen](https://travis-ci.org/who246/hopen.svg?branch=master) 
+Golang web极速开发框架 Rapid development framework
 #how to use
 
 ##main
